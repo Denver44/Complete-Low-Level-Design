@@ -1,17 +1,27 @@
-import { Filter } from './Filter';
+import { FoodItemFilter } from './FoodItemFilter';
 import { FoodItem, MealType } from '../data';
 
 /**
- * Filter food items by meal type (VEG or NON_VEG)
+ * Filter Implementation #1: Meal Type Filter
  *
- * This filter implements the Filter interface to provide
- * dietary preference filtering.
+ * This filter checks if a food item matches a specific meal type preference.
+ *
+ * Real-world usage:
+ * - User wants only vegetarian items
+ * - User wants only non-vegetarian items
  *
  * @example
+ * // Create a filter for vegetarian items only
  * const vegFilter = new MealTypeFilter(MealType.VEG);
- * const vegetarianItems = vegFilter.apply(allFoodItems);
+ *
+ * // Test some food items
+ * const pizza = new FoodItem(...); // Margherita Pizza (VEG)
+ * const burger = new FoodItem(...); // Chicken Burger (NON_VEG)
+ *
+ * vegFilter.filter(pizza);   // Returns true ✅
+ * vegFilter.filter(burger);  // Returns false ❌
  */
-export class MealTypeFilter implements Filter<FoodItem> {
+export class MealTypeFilter implements FoodItemFilter {
   private readonly mealType: MealType;
 
   /**
@@ -23,11 +33,12 @@ export class MealTypeFilter implements Filter<FoodItem> {
   }
 
   /**
-   * Filter items to only include those matching the specified meal type
-   * @param items - List of food items to filter
-   * @returns Filtered list containing only items with matching meal type
+   * Checks if the given food item matches the specified meal type
+   *
+   * @param foodItem - The food item to evaluate
+   * @returns true if the item's meal type matches, false otherwise
    */
-  apply(items: FoodItem[]): FoodItem[] {
-    return items.filter(item => item.getMealType() === this.mealType);
+  filter(foodItem: FoodItem): boolean {
+    return foodItem.getMealType() === this.mealType;
   }
 }

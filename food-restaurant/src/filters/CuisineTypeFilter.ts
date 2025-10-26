@@ -1,39 +1,46 @@
-import { Filter } from './Filter';
+import { FoodItemFilter } from './FoodItemFilter';
 import { FoodItem, CuisineType } from '../data';
 
 /**
- * Filter food items by cuisine types
+ * Filter Implementation #2: Cuisine Type Filter
  *
- * This filter allows users to specify multiple acceptable cuisine types.
- * An item passes the filter if its cuisine type is in the allowed list.
+ * This filter checks if a food item's cuisine is in a list of acceptable cuisines.
+ *
+ * Why a List?
+ * - Flexibility! Users might want multiple cuisines
+ * - "Show me Italian OR Asian food"
+ * - "I'm interested in Spanish OR Mexican OR German"
  *
  * @example
- * const cuisineFilter = new CuisineTypeFilter([CuisineType.ITALIAN, CuisineType.ASIAN]);
- * const italianOrAsianItems = cuisineFilter.apply(allFoodItems);
+ * const userPreferences = [CuisineType.ITALIAN, CuisineType.ASIAN];
+ * const filter = new CuisineTypeFilter(userPreferences);
+ *
+ * const pasta = new FoodItem(...);  // ITALIAN cuisine
+ * const curry = new FoodItem(...);  // ASIAN cuisine
+ * const taco = new FoodItem(...);   // MEXICAN cuisine
+ *
+ * filter.filter(pasta);  // true ✅ (ITALIAN is in list)
+ * filter.filter(curry);  // true ✅ (ASIAN is in list)
+ * filter.filter(taco);   // false ❌ (MEXICAN not in list)
  */
-export class CuisineTypeFilter implements Filter<FoodItem> {
-  private readonly cuisineTypes: Set<CuisineType>;
+export class CuisineTypeFilter implements FoodItemFilter {
+  private readonly cuisineTypes: CuisineType[];
 
   /**
    * Create a new CuisineTypeFilter
-   * @param cuisineTypes - Array of acceptable cuisine types
+   * @param cuisineTypes - List of acceptable cuisine types
    */
   constructor(cuisineTypes: CuisineType[]) {
-    // Using a Set for O(1) lookup performance
-    this.cuisineTypes = new Set(cuisineTypes);
+    this.cuisineTypes = cuisineTypes;
   }
 
   /**
-   * Filter items to only include those with cuisine types in the allowed list
-   * @param items - List of food items to filter
-   * @returns Filtered list containing only items with matching cuisine types
+   * Checks if the given food item's cuisine is in the allowed list
+   *
+   * @param foodItem - The food item to evaluate
+   * @returns true if the item's cuisine type is in the allowed list, false otherwise
    */
-  apply(items: FoodItem[]): FoodItem[] {
-    // If no cuisine types specified, return all items
-    if (this.cuisineTypes.size === 0) {
-      return items;
-    }
-
-    return items.filter(item => this.cuisineTypes.has(item.getCuisineType()));
+  filter(foodItem: FoodItem): boolean {
+    return this.cuisineTypes.includes(foodItem.getCuisineType());
   }
 }

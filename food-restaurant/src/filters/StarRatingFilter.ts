@@ -1,35 +1,48 @@
-import { Filter } from './Filter';
+import { FoodItemFilter } from './FoodItemFilter';
 import { FoodItem, StarRating } from '../data';
 
 /**
- * Filter food items by minimum star rating
+ * Filter Implementation #3: Star Rating Filter
  *
- * This filter keeps only items with a rating greater than or equal
- * to the specified minimum rating.
+ * This filter checks if a food item meets a minimum rating requirement.
+ *
+ * The Magic of getVal():
+ * - Clean, elegant comparison using numeric values
+ * - No need for complex if-else chains
+ * - Scalable for any rating system
  *
  * @example
- * const ratingFilter = new StarRatingFilter(StarRating.FOUR);
- * const highRatedItems = ratingFilter.apply(allFoodItems); // Only 4+ star items
+ * // User wants items rated 4+ stars
+ * const highRatingFilter = new StarRatingFilter(StarRating.FOUR);
+ *
+ * const greatPizza = new FoodItem(...);  // 5 stars
+ * const goodPasta = new FoodItem(...);   // 4 stars
+ * const okayBurger = new FoodItem(...);  // 3 stars
+ * const badTaco = new FoodItem(...);     // 2 stars
+ *
+ * highRatingFilter.filter(greatPizza);   // true ✅ (5 >= 4)
+ * highRatingFilter.filter(goodPasta);    // true ✅ (4 >= 4)
+ * highRatingFilter.filter(okayBurger);   // false ❌ (3 < 4)
+ * highRatingFilter.filter(badTaco);      // false ❌ (2 < 4)
  */
-export class StarRatingFilter implements Filter<FoodItem> {
-  private readonly minRating: StarRating;
+export class StarRatingFilter implements FoodItemFilter {
+  private readonly starRating: StarRating;
 
   /**
    * Create a new StarRatingFilter
-   * @param minRating - Minimum star rating (items with this rating or higher will pass)
+   * @param starRating - Minimum star rating (items with this rating or higher will pass)
    */
-  constructor(minRating: StarRating) {
-    this.minRating = minRating;
+  constructor(starRating: StarRating) {
+    this.starRating = starRating;
   }
 
   /**
-   * Filter items to only include those with rating >= minimum rating
-   * @param items - List of food items to filter
-   * @returns Filtered list containing only items meeting the rating requirement
+   * Checks if the given food item meets the minimum rating requirement
+   *
+   * @param foodItem - The food item to evaluate
+   * @returns true if the item's rating >= minimum rating, false otherwise
    */
-  apply(items: FoodItem[]): FoodItem[] {
-    return items.filter(item =>
-      StarRating.isGreaterOrEqual(item.getStarRating(), this.minRating)
-    );
+  filter(foodItem: FoodItem): boolean {
+    return foodItem.getStarRating() >= this.starRating;
   }
 }
