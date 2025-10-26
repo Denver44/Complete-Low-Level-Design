@@ -9,11 +9,10 @@ export { MealType, CuisineType, StarRating, FoodItem } from './data';
 
 // Export filters
 export {
-  Filter,
+  FoodItemFilter,
   MealTypeFilter,
   CuisineTypeFilter,
   StarRatingFilter,
-  AvailabilityFilter,
 } from './filters';
 
 // Export API

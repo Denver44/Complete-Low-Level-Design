@@ -1,49 +1,115 @@
-import { FoodItem, MealType, CuisineType, StarRating } from '../data';
+import { FoodItem } from '../data';
+import { FoodItemFilter } from '../filters';
 
 /**
- * API for searching food items with multiple filter criteria
+ * Business Logic Layer: FoodItemSearcher
  *
- * This class provides the main search functionality for the food delivery system.
- * It handles complex queries with multiple filters while maintaining clean,
- * extensible architecture.
+ * This is the powerhouse class—the brain behind the search operation!
  *
- * Design principles:
- * - Separation of concerns: Fetch vs Filter operations
- * - Open-Closed principle: Easy to add new filters without modifying this class
- * - Type safety: Using enums prevents invalid filter values
+ * Responsibilities:
+ * - Validate user inputs
+ * - Fetch data from database (via DataAccessor - to be implemented)
+ * - Convert raw data to FoodItem objects (via Converter - to be implemented)
+ * - Apply all filters in cascade
+ * - Return filtered results
+ *
+ * What this class does NOT know about:
+ * - How filters work internally
+ * - How database queries are constructed
+ * - How results are processed
+ *
+ * This is separation of concerns in action! 🎯
  */
 export class FoodItemSearcher {
   /**
-   * Search for food items based on name and various filter criteria
+   * Search for food items with cascade filtering
    *
-   * @param foodItemName - The name or partial name to search for (e.g., "pizza", "biryani")
-   * @param mealType - Filter by dietary preference (VEG or NON_VEG)
-   * @param cuisineTypes - List of acceptable cuisine types (ITALIAN, ASIAN, etc.)
-   * @param starRating - Minimum star rating (items with this rating or higher)
-   * @returns List of matching food items, or empty list if no matches found
+   * The Open-Closed Principle in Action:
+   * - This method signature never changes when adding new filter types!
+   * - Want to add a price filter? Just add it to the filters list!
+   * - No modifications needed to this code!
+   *
+   * @param foodItemName - The name or partial name to search for (e.g., "pizza")
+   * @param filters - List of filters to apply (any number, any type!)
+   * @returns List of matching food items
+   * @throws Error if inputs are invalid
    *
    * @example
-   * const searcher = new FoodItemSearcher();
-   * const results = searcher.search(
-   *   "pizza",
-   *   MealType.VEG,
-   *   [CuisineType.ITALIAN],
-   *   StarRating.FOUR
-   * );
+   * const filters = [
+   *   new MealTypeFilter(MealType.VEG),
+   *   new CuisineTypeFilter([CuisineType.ITALIAN]),
+   *   new StarRatingFilter(StarRating.FOUR)
+   * ];
+   * const results = searcher.search("pizza", filters);
    */
-  search(
-    foodItemName: string,
-    mealType: MealType,
-    cuisineTypes: CuisineType[],
-    starRating: StarRating
-  ): FoodItem[] {
-    // TODO: Implementation in Part 2
-    // 1. Fetch food items from database matching foodItemName
-    // 2. Apply MealType filter
-    // 3. Apply CuisineType filter
-    // 4. Apply StarRating filter
-    // 5. Return filtered results
+  search(foodItemName: string, filters: FoodItemFilter[]): FoodItem[] {
+    // ================================
+    // Step 1: Input Validation
+    // ================================
+    // Always validate your inputs! Trust no one—not even yourself! 😄
+    // This catches errors early and prevents mysterious crashes deep in the code
+    if (
+      foodItemName == null ||
+      foodItemName.length === 0 ||
+      filters == null
+    ) {
+      throw new Error('Missing required parameters');
+    }
 
-    throw new Error('Method not implemented yet - Coming in Part 2!');
+    // ================================
+    // Step 2: Fetch Data from Database
+    // ================================
+    // TODO: Implement DataAccessor class
+    // const dataAccessor = new DataAccessor();
+    // const result = dataAccessor.getFoodItemsWithName(foodItemName);
+
+    // ================================
+    // Step 3: Convert Raw Data to FoodItem Objects
+    // ================================
+    // TODO: Implement DataAccessObjectConverter
+    // const converter = new DataAccessObjectConverter();
+    // let foodItems = converter.convertToFoodItems(result);
+
+    // For now, we'll work with an empty list since DB is not implemented
+    // In real implementation, this would be populated from the database
+    let foodItems: FoodItem[] = [];
+
+    // ================================
+    // Step 4: Apply Filters in Cascade
+    // ================================
+    // The Filter Application Algorithm: Pipeline Processing
+    // Each filter works on the results from the previous filter
+    //
+    // Think of it like water flowing through multiple sieves:
+    // All Items → [Filter 1] → Subset → [Filter 2] → Smaller Subset → [Filter 3] → Final Result
+    //
+    // Example with real data:
+    // 50 items → [MealType VEG] → 30 items → [Cuisine ITALIAN] → 12 items → [Rating 4+] → 5 items
+
+    for (const filter of filters) {
+      const filteredList: FoodItem[] = [];
+
+      // Apply current filter to each item
+      for (const foodItem of foodItems) {
+        if (filter.filter(foodItem)) {
+          filteredList.push(foodItem);
+        }
+      }
+
+      // Update foodItems for next filter iteration
+      // This is the cascade/pipeline effect!
+      foodItems = filteredList;
+
+      // Early termination optimization:
+      // If no items remain, no need to continue filtering
+      if (foodItems.length === 0) {
+        break;
+      }
+    }
+
+    // ================================
+    // Step 5: Return Final Results
+    // ================================
+    return foodItems;
   }
 }
