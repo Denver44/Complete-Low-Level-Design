@@ -60,38 +60,48 @@ export class FoodItemSearcher {
     // const foodItems = converter.convertToFoodItems(dataAccessResult);
 
     // For now, we'll use a placeholder
-    const foodItems: FoodItem[] = this.fetchFromDatabase(foodItemName);
+    let foodItems: FoodItem[] = this.fetchFromDatabase(foodItemName);
 
-    // Step 4: Apply Filters (The Magic!)
-    // What's Happening:
-    // - For each food item from the database
-    // - Apply each filter one by one
-    // - If ANY filter returns false, skip this item
-    // - If ALL filters return true, include this item in results
+    // Step 4: Apply Filters (The Magic! - Cascading Filter Effect)
+    // What's Happening (Cascading Filter Effect):
     //
-    // The Beauty: Same code works whether there are 3 filters today or 10 tomorrow.
-    // NO CODE CHANGE NEEDED!
+    // Iteration 1 (MealTypeFilter):
+    //   - Start with raw results (e.g., 100 items)
+    //   - Filter 1 checks each item: "Is it VEG?"
+    //   - 60 items pass → filteredFoodItems has 60 items
+    //   - Update: foodItems = filteredFoodItems (now 60 items)
+    //
+    // Iteration 2 (CuisineTypeFilter):
+    //   - Start with 60 items (survivors from Filter 1)
+    //   - Filter 2 checks each: "Is it ITALIAN or ASIAN?"
+    //   - 35 items pass → filteredFoodItems has 35 items
+    //   - Update: foodItems = filteredFoodItems (now 35 items)
+    //
+    // Iteration 3 (StarRatingFilter):
+    //   - Start with 35 items (survivors from Filter 2)
+    //   - Filter 3 checks each: "Is rating >= 4?"
+    //   - 20 items pass → filteredFoodItems has 20 items
+    //   - Update: foodItems = filteredFoodItems (now 20 items)
+    //
+    // Final Result: Return 20 items that passed ALL three filters!
+    //
+    // Think of it like a water filter system:
+    // Each filter works on the output of the previous filter
 
-    const result: FoodItem[] = [];
+    for (const filter of filters) {
+      const filteredFoodItems: FoodItem[] = [];
 
-    for (const item of foodItems) {
-      let passesAllFilters = true;
-
-      // Apply each filter
-      for (const filter of filters) {
-        if (!filter.filter(item)) {
-          passesAllFilters = false;
-          break; // No need to check remaining filters
+      for (const item of foodItems) {
+        if (filter.filter(item)) {
+          filteredFoodItems.push(item);
         }
       }
 
-      // If item passed all filters, include it in results
-      if (passesAllFilters) {
-        result.push(item);
-      }
+      // This line makes the current filtered results become the input for the next filter!
+      foodItems = filteredFoodItems;
     }
 
-    return result;
+    return foodItems;
   }
 
   /**
