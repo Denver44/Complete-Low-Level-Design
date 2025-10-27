@@ -2,11 +2,12 @@
   "name": "stock-trading-system",
   "version": "1.0.0",
   "description": "Observer Pattern implementation for stock trading system",
-  "main": "dist/demo.js",
+  "main": "dist/StockSimulator.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/demo.js",
-    "dev": "ts-node src/demo.ts"
+    "start": "tsc && node dist/StockSimulator.js",
+    "test": "npm start",
+    "dev": "ts-node src/StockSimulator.ts"
   },
   "keywords": ["observer-pattern", "design-patterns", "typescript"],
   "author": "",

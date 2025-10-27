@@ -4,7 +4,8 @@
       "Bash(mkdir:*)",
       "Bash(npm run build:*)",
       "Bash(npm install)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(npm run start:tutor:*)"
     ],
     "deny": [],
     "ask": []
