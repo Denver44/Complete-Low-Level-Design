@@ -1,0 +1,19 @@
+{
+  "name": "stock-trading-system",
+  "version": "1.0.0",
+  "description": "Observer Pattern implementation for stock trading system",
+  "main": "dist/demo.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/demo.js",
+    "dev": "ts-node src/demo.ts"
+  },
+  "keywords": ["observer-pattern", "design-patterns", "typescript"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}
