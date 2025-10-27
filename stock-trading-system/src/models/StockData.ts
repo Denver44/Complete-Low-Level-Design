@@ -21,9 +21,9 @@ class StockData {
     return this.version;
   }
 
-  public setPrice(price: number): void {
-    this.price = price;
-    this.version += 1;
+  // Optional: Helper method to display stock data
+  public toString(): string {
+    return `[${this.symbol}] Price: ${this.price}, Version: ${this.version}`;
   }
 }
 
