@@ -19,32 +19,16 @@ class User {
    * THE PROBLEM: Too many parameters!
    * Which order? userId, username, phoneNumber, age? Or something else?
    */
-  constructor(userId: number, username: string, phoneNumber: string, age: number) {
+  constructor(
+    userId: number,
+    username: string,
+    phoneNumber: string,
+    age: number
+  ) {
     this.userId = userId;
     this.username = username;
     this.phoneNumber = phoneNumber;
     this.age = age;
-  }
-
-  // Getters
-  public getUserId(): number {
-    return this.userId;
-  }
-
-  public getUsername(): string {
-    return this.username;
-  }
-
-  public getPhoneNumber(): string {
-    return this.phoneNumber;
-  }
-
-  public getAge(): number {
-    return this.age;
-  }
-
-  public toString(): string {
-    return `User{userId=${this.userId}, username='${this.username}', phoneNumber='${this.phoneNumber}', age=${this.age}}`;
   }
 }
 

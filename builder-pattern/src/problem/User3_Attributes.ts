@@ -31,7 +31,12 @@ class UserAttributes {
    * ❌ Still need to pass empty strings/0 for optional fields!
    * ❌ Still have combinatorial explosion with constructor overloading!
    */
-  constructor(userId: number, username: string, phoneNumber: string, age: number) {
+  constructor(
+    userId: number,
+    username: string,
+    phoneNumber: string,
+    age: number
+  ) {
     this.userId = userId;
     this.username = username;
     this.phoneNumber = phoneNumber;
@@ -57,27 +62,6 @@ class UserWithAttributes {
     this.username = attributes.username;
     this.phoneNumber = attributes.phoneNumber;
     this.age = attributes.age;
-  }
-
-  // Getters
-  public getUserId(): number {
-    return this.userId;
-  }
-
-  public getUsername(): string {
-    return this.username;
-  }
-
-  public getPhoneNumber(): string {
-    return this.phoneNumber;
-  }
-
-  public getAge(): number {
-    return this.age;
-  }
-
-  public toString(): string {
-    return `User{userId=${this.userId}, username='${this.username}', phoneNumber='${this.phoneNumber}', age=${this.age}}`;
   }
 }
 
