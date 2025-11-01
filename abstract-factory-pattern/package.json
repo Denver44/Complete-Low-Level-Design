@@ -1,0 +1,20 @@
+{
+  "name": "abstract-factory-pattern",
+  "version": "1.0.0",
+  "description": "Abstract Factory Pattern implementation in TypeScript",
+  "scripts": {
+    "build": "tsc",
+    "problem:demo": "tsc && node dist/problem/demo.js",
+    "solution:demo": "tsc && node dist/solution/demo.js"
+  },
+  "keywords": [
+    "design-patterns",
+    "abstract-factory",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
