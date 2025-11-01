@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Builder Pattern - Learning the problem and solutions",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "solution:demo": "tsc && node dist/solution/demo.js"
   },
   "keywords": ["builder-pattern", "design-patterns", "typescript"],
   "author": "",

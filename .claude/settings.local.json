@@ -23,7 +23,8 @@
       "Bash(npm run problem:demo:*)",
       "Bash(npm run failed-solutions:demo:*)",
       "Bash(npm run problem:0:*)",
-      "Bash(npm run problem:all:*)"
+      "Bash(npm run problem:all:*)",
+      "Bash(npm run solution:demo:*)"
     ],
     "deny": [],
     "ask": []
