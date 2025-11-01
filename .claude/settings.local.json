@@ -8,7 +8,22 @@
       "Bash(npm run start:tutor:*)",
       "Bash(npm run problem:*)",
       "Bash(npm run failed-solutions:*)",
-      "Bash(npm run solution:*)"
+      "Bash(npm run solution:*)",
+      "Bash(dir:*)",
+      "Bash(node index.js:*)",
+      "Bash(node:*)",
+      "Bash(move \"failed-solutions\\UserWithOverloading.ts\" \"problem\\UserWithOverloading.ts\")",
+      "Bash(move \"failed-solutions\\UserWithSetters.ts\" \"problem\\UserWithSetters.ts\")",
+      "Bash(move \"failed-solutions\\UserAttributes.ts\" \"problem\\UserAttributes.ts\")",
+      "Bash(copy \"builder-pattern\\src\\failed-solutions\\UserWithOverloading.ts\" \"builder-pattern\\src\\problem\\UserWithOverloading.ts\")",
+      "Bash(copy \"builder-pattern\\src\\failed-solutions\\UserWithSetters.ts\" \"builder-pattern\\src\\problem\\UserWithSetters.ts\")",
+      "Bash(copy \"builder-pattern\\src\\failed-solutions\\UserAttributes.ts\" \"builder-pattern\\src\\problem\\UserAttributes.ts\")",
+      "Bash(cp:*)",
+      "Bash(rm:*)",
+      "Bash(npm run problem:demo:*)",
+      "Bash(npm run failed-solutions:demo:*)",
+      "Bash(npm run problem:0:*)",
+      "Bash(npm run problem:all:*)"
     ],
     "deny": [],
     "ask": []

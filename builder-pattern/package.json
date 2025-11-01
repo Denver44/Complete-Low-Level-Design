@@ -2,13 +2,8 @@
   "name": "builder-pattern",
   "version": "1.0.0",
   "description": "Builder Pattern - Learning the problem and solutions",
-  "main": "dist/BuilderPatternDemo.js",
   "scripts": {
-    "build": "tsc",
-    "problem": "ts-node src/problem/ProblemDemo.ts",
-    "failed-solutions": "ts-node src/FailedSolutionsDemo.ts",
-    "solution": "ts-node src/BuilderPatternDemo.ts",
-    "start": "npm run solution"
+    "build": "tsc"
   },
   "keywords": ["builder-pattern", "design-patterns", "typescript"],
   "author": "",
