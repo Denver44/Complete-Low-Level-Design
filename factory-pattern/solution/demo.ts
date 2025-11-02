@@ -1,11 +1,11 @@
 import { CoffeeServer } from './CoffeeServer';
 import { CoffeeFactory } from './CoffeeFactory';
-import { AbstractFactory } from './AbstractFactory';
+import { CoffeeFactoryInterface } from './CoffeeFactoryInterface';
 
-console.log('=== ABSTRACT FACTORY PATTERN: THE SOLUTION ===\n');
+console.log('=== FACTORY PATTERN: THE SOLUTION ===\n');
 
 // Create factory and inject it (Dependency Injection!)
-const factory: AbstractFactory = new CoffeeFactory();
+const factory: CoffeeFactoryInterface = new CoffeeFactory();
 const server = new CoffeeServer(factory);
 
 console.log('Serving Cappuccino:');
@@ -26,7 +26,7 @@ server.serve('Latte');
 console.log('\n=== BENEFITS ===');
 console.log('✅ Centralized object creation (CoffeeFactory)');
 console.log('✅ ZERO concrete dependencies in CoffeeServer');
-console.log('✅ Depends only on interfaces (Coffee & AbstractFactory)');
+console.log('✅ Depends only on interfaces (Coffee & CoffeeFactoryInterface)');
 console.log('✅ Perfect Dependency Inversion Principle');
 console.log('✅ Can inject different factories (production, mock, test)');
 console.log('✅ Compilation independence');

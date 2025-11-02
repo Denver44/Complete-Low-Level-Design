@@ -1,5 +1,5 @@
 import { Coffee } from './Coffee';
-import { AbstractFactory } from './AbstractFactory';
+import { CoffeeFactoryInterface } from './CoffeeFactoryInterface';
 
 /**
  * CoffeeServer - Using Abstract Factory Pattern
@@ -13,9 +13,9 @@ import { AbstractFactory } from './AbstractFactory';
  */
 export class CoffeeServer {
 
-  private factory: AbstractFactory;
+  private factory: CoffeeFactoryInterface;
 
-  constructor(factory: AbstractFactory) {
+  constructor(factory: CoffeeFactoryInterface) {
     this.factory = factory;
   }
 

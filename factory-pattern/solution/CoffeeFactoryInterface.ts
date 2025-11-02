@@ -1,9 +1,9 @@
 import { Coffee } from './Coffee';
 
 /**
- * AbstractFactory Interface
+ * CoffeeFactoryInterface
  *
- * The Abstract Factory Pattern - Factory as an Interface!
+ * The Factory Pattern - Factory as an Interface!
  *
  * Benefits:
  * 1. Clients depend on ABSTRACTION (this interface), not concrete factory
@@ -11,6 +11,6 @@ import { Coffee } from './Coffee';
  * 3. Perfect Dependency Inversion Principle compliance
  * 4. Compilation independence - clients don't need concrete classes
  */
-export interface AbstractFactory {
+export interface CoffeeFactoryInterface {
   getCoffee(coffeeType: string): Coffee | null;
 }

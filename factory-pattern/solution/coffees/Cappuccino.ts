@@ -1,4 +1,4 @@
-import { Coffee } from './Coffee';
+import { Coffee } from '../Coffee';
 
 /**
  * Cappuccino - A concrete implementation of Coffee

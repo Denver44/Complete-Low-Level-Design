@@ -1,9 +1,9 @@
 import { Coffee } from './Coffee';
-import { AbstractFactory } from './AbstractFactory';
-import { Cappuccino } from './Cappuccino';
-import { Espresso } from './Espresso';
-import { Robusta } from './Robusta';
-import { Arabica } from './Arabica';
+import { CoffeeFactoryInterface } from './CoffeeFactoryInterface';
+import { Cappuccino } from './coffees/Cappuccino';
+import { Espresso } from './coffees/Espresso';
+import { Robusta } from './coffees/Robusta';
+import { Arabica } from './coffees/Arabica';
 
 /**
  * CoffeeFactory - Concrete Factory Implementation
@@ -16,7 +16,7 @@ import { Arabica } from './Arabica';
  * - Clients depend on AbstractFactory interface, not this class
  * - Other implementations possible (MockCoffeeFactory, TestCoffeeFactory, etc.)
  */
-export class CoffeeFactory implements AbstractFactory {
+export class CoffeeFactory implements CoffeeFactoryInterface {
 
   getCoffee(coffeeType: string): Coffee | null {
     if (coffeeType === 'Cappuccino') {
