@@ -1,4 +1,4 @@
-import { Coffee } from './Coffee';
+import { Coffee } from '../Coffee';
 
 /**
  * Robusta - A concrete implementation of Coffee

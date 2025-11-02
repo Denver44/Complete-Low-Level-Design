@@ -24,7 +24,12 @@
       "Bash(npm run failed-solutions:demo:*)",
       "Bash(npm run problem:0:*)",
       "Bash(npm run problem:all:*)",
-      "Bash(npm run solution:demo:*)"
+      "Bash(npm run solution:demo:*)",
+      "Bash(move \"factory-pattern\\problem\\Cappuccino.ts\" \"factory-pattern\\problem\\coffees\\Cappuccino.ts\")",
+      "Bash(move \"factory-pattern\\problem\\Espresso.ts\" \"factory-pattern\\problem\\coffees\\Espresso.ts\")",
+      "Bash(move \"factory-pattern\\problem\\Robusta.ts\" \"factory-pattern\\problem\\coffees\\Robusta.ts\")",
+      "Bash(mv:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []

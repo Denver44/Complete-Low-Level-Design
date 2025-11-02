@@ -7,12 +7,16 @@
     "problem:demo": "tsc && node dist/problem/demo.js",
     "solution:demo": "tsc && node dist/solution/demo.js"
   },
-  "keywords": ["factory-pattern", "design-patterns", "typescript"],
+  "keywords": [
+    "factory-pattern",
+    "design-patterns",
+    "typescript"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "typescript": "^5.0.0",
-    "ts-node": "^10.9.0"
+    "@types/node": "^20.19.24",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
   }
 }

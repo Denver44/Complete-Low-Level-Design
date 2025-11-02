@@ -1,7 +1,7 @@
 import { Coffee } from './Coffee';
-import { Cappuccino } from './Cappuccino';
-import { Espresso } from './Espresso';
-import { Robusta } from './Robusta';
+import { Cappuccino } from './coffees/Cappuccino';
+import { Espresso } from './coffees/Espresso';
+import { Robusta } from './coffees/Robusta';
 
 /**
  * CoffeeServer - Naive Approach
